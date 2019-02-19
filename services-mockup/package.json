@@ -1,0 +1,20 @@
+{
+  "name": "services-mockup",
+  "version": "1.0.0",
+  "description": "Danske Bank Application Server.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node dist/index.js"
+  },
+  "author": "Sabin Rimniceanu",
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "@types/express": "^4.16.1",
+    "gulp": "^4.0.0",
+    "typescript": "^3.3.3"
+  },
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
