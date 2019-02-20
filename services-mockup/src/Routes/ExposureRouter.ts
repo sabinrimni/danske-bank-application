@@ -1,4 +1,5 @@
 import { Router, Request, Response, NextFunction } from 'express';
+import {Person, Facility, Exposure} from './../Storage/Model';
 
 class ExposureRouter {
     public router: Router;
