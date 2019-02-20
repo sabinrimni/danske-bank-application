@@ -1,4 +1,5 @@
 import { Router, Request, Response, NextFunction } from 'express';
+import StorageManager from "../Storage/StorageManager";
 
 class PersonRouter {
     public router: Router;
@@ -11,24 +12,11 @@ class PersonRouter {
         this.init();
     }
     private getPerson = async (req: Request, res: Response, next: NextFunction) => {
-        const { username } = req.body;
-        try {
-            if (!username)
-                throw new ResponseError(400, `Wrong Format! (${username})`);
-            
-            const user = await AccountModel.getUserByUsername(username);
-            const newPassword = this.generateTempPassword();
-            user.pVersion++;
-            user.password = bcrypt.hashSync(newPassword, bcrypt.genSaltSync());
-            const updates = { password: user.password, pVersion: user.pVersion, lastModified: Date.now() };
-            await AccountModel.update(user.username, updates);
-
-            EmailService.sendResetPasswordEmail(user, newPassword);
-            res.sendStatus(200);
-        } catch (e) {
-            console.log(e.message, e);
-            res.sendStatus(e.statusCode || 500);
-        }
+      const input = req.params.input;
+      if(input)
+        res.send(StorageManager.getPerson(input));
+      else 
+        res.sendStatus(400);
     }
     init() {
         this.router.get('/:input', this.getPerson);

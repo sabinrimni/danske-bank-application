@@ -1,5 +1,5 @@
 import { Router, Request, Response, NextFunction } from 'express';
-import {Person, Facility, Exposure} from './../Storage/Model';
+import StorageManager from "../Storage/StorageManager";
 
 class ExposureRouter {
     public router: Router;
@@ -12,24 +12,11 @@ class ExposureRouter {
         this.init();
     }
     private getExposure = async (req: Request, res: Response, next: NextFunction) => {
-        const { username } = req.body;
-        try {
-            if (!username)
-                throw new ResponseError(400, `Wrong Format! (${username})`);
-            
-            const user = await AccountModel.getUserByUsername(username);
-            const newPassword = this.generateTempPassword();
-            user.pVersion++;
-            user.password = bcrypt.hashSync(newPassword, bcrypt.genSaltSync());
-            const updates = { password: user.password, pVersion: user.pVersion, lastModified: Date.now() };
-            await AccountModel.update(user.username, updates);
-
-            EmailService.sendResetPasswordEmail(user, newPassword);
-            res.sendStatus(200);
-        } catch (e) {
-            console.log(e.message, e);
-            res.sendStatus(e.statusCode || 500);
-        }
+        const val2 = req.params.val2;
+        if(val2)
+          res.send(StorageManager.getExposure(val2));
+        else 
+          res.sendStatus(400);
     }
     init() {
         this.router.get('/:val2', this.getExposure);
