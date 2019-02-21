@@ -114,3 +114,12 @@ ux-dialog-overlay.active {
 ux-dialog-body h4 {
   text-align: center;
 }
+.ux-input--focused+.ux-input-info .ux-input-info__counter {
+  color: #4043ff;
+}
+.ux-input-info__counter {
+  margin-left: auto;
+}
+.error-text {
+  color: red;
+}
