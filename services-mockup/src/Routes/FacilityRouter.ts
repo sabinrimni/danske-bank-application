@@ -12,11 +12,16 @@ class FacilityRouter {
         this.init();
     }
     private getFacility = async (req: Request, res: Response, next: NextFunction) => {
-      const val1 = req.params.val1;
-      if(val1)
-        res.send(StorageManager.getFacility(val1));
-      else 
-        res.sendStatus(400);
+        const val1 = req.params.val1;
+        if (val1) {
+            const result = StorageManager.getFacility(val1);
+            if (result)
+                res.send(result);
+            else
+                res.sendStatus(404);
+        }
+        else
+            res.sendStatus(400);
     }
     init() {
         this.router.get('/:val1', this.getFacility);

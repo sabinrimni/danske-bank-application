@@ -2,25 +2,30 @@ import { Router, Request, Response, NextFunction } from 'express';
 import StorageManager from "../Storage/StorageManager";
 
 class PersonRouter {
-    public router: Router;
+  public router: Router;
 
-    /**
-     * Initialize the PersonRouter
-     */
-    constructor() {
-        this.router = Router();
-        this.init();
+  /**
+   * Initialize the PersonRouter
+   */
+  constructor() {
+    this.router = Router();
+    this.init();
+  }
+  private getPerson = async (req: Request, res: Response, next: NextFunction) => {
+    const input = req.params.input;
+    if (input) {
+      const result = StorageManager.getPerson(input);
+      if (result)
+        res.send(result);
+      else
+        res.sendStatus(404);
     }
-    private getPerson = async (req: Request, res: Response, next: NextFunction) => {
-      const input = req.params.input;
-      if(input)
-        res.send(StorageManager.getPerson(input));
-      else 
-        res.sendStatus(400);
-    }
-    init() {
-        this.router.get('/:input', this.getPerson);
-    }
+    else
+      res.sendStatus(400);
+  }
+  init() {
+    this.router.get('/:input', this.getPerson);
+  }
 
 }
 // Create the PersonRouter, and export its configured Express.Router

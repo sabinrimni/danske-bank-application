@@ -1,7 +1,7 @@
 /// <reference types="aurelia-loader-webpack/src/webpack-hot-interface"/>
-import {Aurelia} from 'aurelia-framework'
+import { Aurelia } from 'aurelia-framework'
 import environment from './environment';
-import {PLATFORM} from 'aurelia-pal';
+import { PLATFORM } from 'aurelia-pal';
 import * as Bluebird from 'bluebird';
 
 // remove out if you don't want a Promise polyfill (remove also from webpack.config.js)
@@ -11,6 +11,13 @@ export function configure(aurelia: Aurelia) {
   aurelia.use
     .standardConfiguration()
     .feature(PLATFORM.moduleName('resources/index'));
+
+  aurelia.use
+    .plugin(PLATFORM.moduleName('aurelia-validation'))
+    .plugin(PLATFORM.moduleName('@aurelia-ux/core'))
+    .plugin(PLATFORM.moduleName('@aurelia-ux/components'))
+    .plugin(PLATFORM.moduleName('@aurelia-ux/icons'))
+    .plugin(PLATFORM.moduleName('aurelia-dialog'))
 
   // Uncomment the line below to enable animation.
   // aurelia.use.plugin(PLATFORM.moduleName('aurelia-animator-css'));

@@ -1,3 +1,26 @@
 <template>
-  <h1>${message}</h1>
+  <require from="./app.css"></require>
+  <ux-grid fluid align-cells-middle>
+    <ux-grid-cell sm="6" lg="3" class="cell align-self-middle">
+      <ux-card>
+        <ux-card-content>
+          <ux-form>
+
+            <div class="form-row">
+
+              <ux-field label="Input">
+                <div class="add-padding">
+                  <ux-input placeholder="Alphanumeric input" maxlength="10" value.bind="input & validate"></ux-input>
+                  <ux-input-info ux-input-counter></ux-input-info>
+                </div>
+              </ux-field>
+            </div>
+            <ux-button size="small" click.delegate="submit()">Submit</ux-button>
+
+          </ux-form>
+
+        </ux-card-content>
+      </ux-card>
+    </ux-grid-cell>
+  </ux-grid>
 </template>
