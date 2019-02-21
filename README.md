@@ -2,7 +2,7 @@
 A simple SPA application designed to fetch data from a mock API and visualize the result.
 This project is built with Aurelia as a frontend framework and Express.js for mocking services. All relevant source code is in Typescript 3.
  
-### Pre-requisites###
+### Pre-requisites ###
 * Node.js version 10.x.x (recommended: 10.15.1)
 
 ### How to run the distribution ###
