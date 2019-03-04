@@ -9,6 +9,8 @@ This project is built with Aurelia as a frontend framework and Express.js for mo
 In order to run the distribution build of the project, simply navigate to the folder `danske-bank-application/services-mockup` and run the following command: `npm install`. This will install the packages for the mock services, after which type `npm start` from within the same folder to start the services.
 Once the services are up and running, navigate to the folder `danske-bank-application/dist` and open `index.html` in any browser.
 
+NOTE: The mock service has 2 objects with IDs `1` and `2` that can be used for testing. See `danske-bank-application/services-mockup/dist/Storage/MockStorage.json` for more information on the mock data.
+
 ### How to setup and build ###
 In order to build the project there are some `npm` modules to install:
 * For building the mock server, navigate to the folder `danske-bank-application/services-mockup` and run the following command: `npm install` and `npm install gulp -g`. 
